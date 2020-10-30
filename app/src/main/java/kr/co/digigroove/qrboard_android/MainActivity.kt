@@ -79,6 +79,8 @@ class MainActivity : AppCompatActivity(),
 
         // ActivityResult 클래스 정의
         androidActivityResult = AndroidActivityResult(this, androidBridgeFunction)
+
+        initWebView()
     }
 
     // 로딩바 보임처리
@@ -159,7 +161,7 @@ class MainActivity : AppCompatActivity(),
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
         webSettings.javaScriptCanOpenWindowsAutomatically = true
-        webSettings.cacheMode = WebSettings.LOAD_DEFAULT
+        webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
         webSettings.loadWithOverviewMode = true
         webSettings.useWideViewPort = true
         webSettings.domStorageEnabled = true
@@ -308,35 +310,24 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun goPageMove() {
-        Log.e(TAG, "goPageMove ::" + intent.data)
+//        Log.e(TAG, "goPageMove ::" + intent.data)
         val data = intent.data
         if (data != null) {
-            Log.e(TAG, "getQueryParameter PageURL : " + data.getQueryParameter("qrboardIdx"))
-            Log.e(TAG, "getQueryParameter PageURL : " + data.getQueryParameter("qrboardAreaSeq"))
+//            Log.e(TAG, "getQueryParameter PageURL : " + data.getQueryParameter("qrboardIdx"))
+//            Log.e(TAG, "getQueryParameter PageURL : " + data.getQueryParameter("qrboardAreaSeq"))
             spUtilManager.setValue(sv.PREF_KEY_SCHEME_URL, "/user/advert/create?qrboardIdx="+data.getQueryParameter("qrboardIdx")+"&qrboardAreaSeq="+data.getQueryParameter("qrboardAreaSeq"))
         }
-        initWebView()
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
         Log.e(TAG, "onNewIntent")
-//        setIntent(intent)
-//        val data = intent.data
-//        if (data != null) {
-//            Log.e(TAG, "getQueryParameter PageURL : " + data.getQueryParameter("qrboardIdx"))
-//            Log.e(TAG, "getQueryParameter PageURL : " + data.getQueryParameter("qrboardAreaSeq"))
-//            spUtilManager.setValue(sv.PREF_KEY_SCHEME_URL, "/user/advert/create?qrboardIdx="+data.getQueryParameter("qrboardIdx")+"&qrboardAreaSeq="+data.getQueryParameter("qrboardAreaSeq"))
-//        }
     }
 
     override fun onResume() {
         super.onResume()
-        // 웹뷰 로드가 끝났을때만 데이터 전달
-//        if (webviewPageFinish) {
-            goPageMove()
-//        }
+        goPageMove()
     }
 
 }
