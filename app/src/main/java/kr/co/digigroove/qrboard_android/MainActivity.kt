@@ -181,6 +181,14 @@ class MainActivity : AppCompatActivity(),
         }
 
         URL = sv.SERVICE_URL
+        val data = intent.data
+        if (data != null) {
+            URL = sv.SERVICE_URL + "?qrboardIdx="+ data.getQueryParameter("qrboardIdx") +"&qrboardAreaSeq=" +data.getQueryParameter("qrboardAreaSeq")
+        }
+
+        Log.e("data", data.toString())
+        Log.e("URL", URL)
+
         webView.addJavascriptInterface(androidBridgeFunction, "TWOAPP")
         webView.loadUrl(URL)
     }
@@ -327,7 +335,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onResume() {
         super.onResume()
-        goPageMove()
+//        goPageMove()
     }
 
 }
