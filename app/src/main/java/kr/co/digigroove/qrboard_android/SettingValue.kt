@@ -5,9 +5,9 @@ package kr.co.digigroove.qrboard_android
  */
 class SettingValue {
     // LOCAL TEST
-//    val SERVICE_URL = "http://192.168.0.63:8080"
-    // TEST SERVER
-    val SERVICE_URL = "http://qrbdtool.ersolution.cc:8083"
+//    val SERVICE_URL = "http://192.168.0.4:8080"
+    // REAL SERVER
+    val SERVICE_URL = "https://tool.qrboard.co.kr"
 
     val PREF_KEY_USER_IDX       = "USER_IDX"            // 사용자 인덱스
     val PREF_KEY_AUTO_LOGIN     = "AUTO_LOGIN"          // 자동로그인 여부
